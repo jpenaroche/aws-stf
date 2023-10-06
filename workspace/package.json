@@ -1,0 +1,26 @@
+{
+  "name": "campaign-segments-workspace",
+  "version": "1.0.0",
+  "description": "Monorepo for all resources involved in Campaign Segments creation process",
+  "engines": {
+    "node": "16.20.0"
+  },
+  "scripts": {
+    "test": "yarn workspaces run test",
+    "compile": "yarn workspaces run compile"
+  },
+  "keywords": [],
+  "author": "Newscorp",
+  "license": "ISC",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "./app/CombinationLambda",
+      "./app/QueryLambda",
+      "./app/SegmentLambda"
+    ],
+    "nohoist": [
+      "*/gts"
+    ]
+  }
+}
