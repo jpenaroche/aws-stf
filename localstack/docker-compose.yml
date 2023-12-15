@@ -9,19 +9,23 @@ services:
     environment:
       - DEBUG=1
       - DATA_DIR=/tmp/localstack/data
+      - PROVIDER_OVERRIDE_STEPFUNCTIONS=v2
+      - LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT=60
     volumes:
-      - "./.localstack:/tmp/localstack"
+      # - "./.localstack:/tmp/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
     networks:
-      - localstack
+      - graylog
   # MongoDB: https://hub.docker.com/_/mongo/
   mongo:
     image: mongo:5.0.13
+    container_name: graylog-mongo
     networks:
       - graylog
   # Elasticsearch: https://www.elastic.co/guide/en/elasticsearch/reference/7.10/docker.html
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
+    container_name: graylog-elasticsearch
     environment:
       - http.host=0.0.0.0
       - transport.host=localhost
@@ -40,6 +44,7 @@ services:
   # Graylog: https://hub.docker.com/r/graylog/graylog/
   graylog:
     image: graylog/graylog:5.0
+    container_name: graylog
     environment:
       # CHANGE ME (must be at least 16 characters)!
       - GRAYLOG_PASSWORD_SECRET=somepasswordpepper
@@ -67,6 +72,4 @@ services:
 
 networks:
   graylog:
-    driver: bridge
-  localstack:
     driver: bridge
