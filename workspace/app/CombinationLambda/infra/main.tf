@@ -15,7 +15,7 @@ resource "aws_iam_role" "iam_for_lambda" {
 resource "null_resource" "dependencies" {
   provisioner "local-exec" {
     working_dir = "${path.module}/../"
-    command     = "npm i"
+    command     = "npm run build"
   }
 }
 

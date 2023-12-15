@@ -1,13 +1,21 @@
+import {getLogger} from './lib/logger';
+
 export async function handler(event: any, context: any) {
-  console.log(
-    'New logic executed from combination lambda ' + JSON.stringify(event)
-  );
-  return [
+  const logger = getLogger();
+  const data = [
     {
-      name: 'joe',
+      key: 'hello',
     },
     {
-      name: 'ana',
+      key: 'world',
     },
   ];
+
+  logger.log('Mesage in Combination Lambda handler. Sending Item list', {
+    payload: data,
+  });
+  data.push({key: '!!'});
+  logger.close();
+  return data;
 }
+handler(null, null);

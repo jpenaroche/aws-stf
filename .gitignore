@@ -1,5 +1,6 @@
 localstack/*
 !localstack/docker-compose.yml
-!localstack/main.tf
-node_modules
+!localstack/build
+!localstack/*.tf
+!localstack/*.sh
 .DS_Store

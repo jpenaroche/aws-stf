@@ -1,26 +1,24 @@
 {
-  "name": "campaign-segments-workspace",
+  "name": "insite-segments",
+  "packageManager": "yarn@3.6.4",
   "version": "1.0.0",
-  "description": "Monorepo for all resources involved in Campaign Segments creation process",
+  "description": "Monorepo for StepFunction with parallel state",
   "engines": {
-    "node": "16.20.0"
+    "node": "16.x.x",
+    "npm": "8.x.x"
   },
   "scripts": {
-    "test": "yarn workspaces run test",
+    "test": "yarn workspaces foreach -ptv run test",
     "compile": "yarn workspaces run compile"
   },
   "keywords": [],
-  "author": "Newscorp",
-  "license": "ISC",
+  "license": "MIT",
   "private": true,
   "workspaces": {
     "packages": [
       "./app/CombinationLambda",
       "./app/QueryLambda",
       "./app/SegmentLambda"
-    ],
-    "nohoist": [
-      "*/gts"
     ]
   }
 }
